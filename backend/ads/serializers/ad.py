@@ -15,36 +15,26 @@ class AdListSerializer(serializers.ModelSerializer):
         model = Ad
         fields = ['pk', 'title', 'price', 'description', 'image']
 
-# Доработать
-class AdRetrieveSerializer(serializers.ModelSerializer):
-    phone = serializers.SlugRelatedField(
-        source='author',
-        many=False,
-        queryset=User.objects.all(),
-        slug_field='phone'
-    )
-
-    author_first_name = serializers.SlugRelatedField(
-        source='author',
-        many=False,
-        queryset=User.objects.all(),
-        slug_field='first_name'
-    )
-
-    author_last_name = serializers.SlugRelatedField(
-        source='author',
-        many=False,
-        queryset=User.objects.all(),
-        slug_field='last_name'
-    )
-
-    class Meta:
-        model = Ad
-        fields = ['pk', 'image', 'title', 'price', 'phone', 'description',
-                  'author_first_name', 'author_last_name', 'author_id']
-
 
 class AdCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
-        fields = ['image', 'title', 'price', 'description']
+        fields = ['title', 'price', 'description', 'image']
+
+
+class AdDestroySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ad
+        fields = ['id']
+
+
+class AdRetrieveSerializer(serializers.ModelSerializer):
+    phone = serializers.SlugRelatedField(source='author', many=False, queryset=User.objects.all(), slug_field='phone')
+    first_name = serializers.SlugRelatedField(source='author', many=False, queryset=User.objects.all(),
+                                                     slug_field='first_name')
+    last_name = serializers.SlugRelatedField(source='author', many=False, queryset=User.objects.all(),
+                                                    slug_field='last_name')
+
+    class Meta:
+        model = Ad
+        fields = ['pk',  'title', 'price', 'description', 'image', 'phone', 'first_name', 'last_name', 'author_id']

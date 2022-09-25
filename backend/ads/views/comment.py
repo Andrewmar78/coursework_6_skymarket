@@ -2,16 +2,21 @@
 from rest_framework.viewsets import ModelViewSet
 
 from ads.models import Comment, Ad
-from ads.serializers import CommentSerializer, CommentListSerializer, CommentCreateSerializer
+# from ads.serializers import CommentSerializer, CommentListSerializer, CommentCreateSerializer
+from backend.ads.permissions import UserPermissions
+from backend.ads.serializers import CommentSerializer, CommentListSerializer, CommentCreateSerializer
 
 
 class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
     serializer_action_classes = {
         'list': CommentListSerializer,
-        # 'retrieve': AdRetrieveSerializer,
+        'retrieve': CommentListSerializer,
         'create': CommentCreateSerializer,
+        'update': CommentCreateSerializer,
     }
+
+    permission_classes = [UserPermissions]
 
     def get_queryset(self):
         return Comment.objects.filter(ad_id=self.kwargs['ad_id'])

@@ -12,31 +12,32 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class CommentListSerializer(serializers.ModelSerializer):
-    author_first_name = serializers.SlugRelatedField(
+    first_name = serializers.SlugRelatedField(
         source='author',
         many=False,
         queryset=User.objects.all(),
         slug_field='first_name'
     )
 
-    author_last_name = serializers.SlugRelatedField(
+    last_name = serializers.SlugRelatedField(
         source='author',
         many=False,
         queryset=User.objects.all(),
         slug_field='last_name'
     )
 
-    # author_image = serializers.SlugRelatedField(
+    # image = serializers.SlugRelatedField(
     #     source='author',
     #     many=False,
     #     queryset=User.objects.all(),
     #     slug_field='image'
     # )
 
+
     class Meta:
         model = Comment
         fields = ['pk', 'text', 'created_at',
-                  'author_id', 'author_first_name', 'author_last_name',
+                  'author_id', 'first_name', 'last_name',
                   # 'author_image',
                   'ad_id']
 
