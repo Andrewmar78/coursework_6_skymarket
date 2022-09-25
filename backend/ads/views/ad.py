@@ -19,21 +19,22 @@ class AdViewSet(ModelViewSet):
         'create': AdCreateSerializer,
         'update': AdUpdateSerializer,
     }
-    # permission_classes = UserPermissions
+    permission_classes = UserPermissions
 
-    # @action(detail=False, methods=['get'], url_path=r'me', serializer_class=AdListSerializer)
-    # def user_ads(self, request, *args, **kwargs):
-    #     current_user = self.request.user
-    #     user_ads = Ad.objects.filter(author=current_user)
-    #     page = self.paginate_queryset(user_ads)
-    #
-    #     if page is not None:
-    #         serializer = self.get_serializer(page, many=True)
-    #         return self.get_paginated_response(serializer.data)
-    #
-    #     serializer = self.get_serializer(queryset, many=True)
-    #     return Response(serializer.data)
-    #
+    @action(detail=False, methods=['get'], serializer_class=AdListSerializer)
+    # Подсмотрел в интернете https://django.fun/ru/docs/django-rest-framework/3.12/api-guide/viewsets/
+    def user_ads(self, request):
+        current_user = self.request.user
+        user_ads = Ad.objects.filter(author=current_user)
+
+        page = self.paginate_queryset(user_ads)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(current_user, many=True)
+        return Response(serializer.data)
+
     # def perform_create(self, serializer):
     #     serializer.save(author=self.request.user)
     #
