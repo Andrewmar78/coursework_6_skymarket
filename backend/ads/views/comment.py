@@ -1,10 +1,8 @@
-# Доработать
 from rest_framework.viewsets import ModelViewSet
-
-from ads.models import Comment, Ad
-# from ads.serializers import CommentSerializer, CommentListSerializer, CommentCreateSerializer
+from backend.ads.models.ad import Ad
+from backend.ads.models.comment import Comment
 from backend.ads.permissions import UserPermissions
-from backend.ads.serializers import CommentSerializer, CommentListSerializer, CommentCreateSerializer
+from backend.ads.serializers.comment import CommentSerializer, CommentListSerializer, CommentCreateSerializer
 
 
 class CommentViewSet(ModelViewSet):
@@ -22,10 +20,7 @@ class CommentViewSet(ModelViewSet):
         return Comment.objects.filter(ad_id=self.kwargs['ad_id'])
 
     def get_serializer_class(self):
-        try:
-            return self.serializer_action_classes[self.action]
-        except (KeyError, AttributeError):
-            return super().get_serializer_class()
+        return self.serializer_action_classes.get(self.action)
 
     def perform_create(self, serializer):
         ad = Ad.objects.get(pk=self.kwargs['ad_id'])

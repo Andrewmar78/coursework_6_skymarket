@@ -1,8 +1,8 @@
-# Доработать
 from django.urls import path, include
-
-from ads.views import AdViewSet, CommentViewSet
 from rest_framework import routers
+
+from backend.ads.views.ad import AdViewSet
+from backend.ads.views.comment import CommentViewSet
 
 router = routers.SimpleRouter()
 router.register('ad', AdViewSet)
