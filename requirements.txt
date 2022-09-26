@@ -27,7 +27,7 @@ Django==4.1.1
 django-cors-headers==3.13.0
 django-templated-mail==1.1.1
 djangorestframework==3.13.1
-djangorestframework-simplejwt==5.2.0
+djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
 docker-pycreds==0.4.0
 docutils==0.16
