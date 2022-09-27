@@ -1,7 +1,6 @@
 from rest_framework import serializers
-
-from backend.ads.models.ad import Ad
-from backend.users.models import User
+from ads.models.ad import Ad
+from users.models import User
 
 
 class AdSerializer(serializers.ModelSerializer):

@@ -4,9 +4,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from backend.ads.models.ad import Ad
-from backend.ads.permissions import UserPermissions
-from backend.ads.serializers.ad import AdListSerializer, AdCreateSerializer, AdDestroySerializer, AdRetrieveSerializer
+from ads.models.ad import Ad
+from ads.permissions import UserPermissions
+from ads.serializers.ad import AdListSerializer, AdCreateSerializer, AdRetrieveSerializer
 
 
 class AdViewSet(ModelViewSet):

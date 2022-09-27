@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
-from backend.ads.models.ad import Ad
-from backend.ads.models.comment import Comment
-from backend.ads.permissions import UserPermissions
-from backend.ads.serializers.comment import CommentSerializer, CommentListSerializer, CommentCreateSerializer
+from ads.models.ad import Ad
+from ads.models.comment import Comment
+from ads.permissions import UserPermissions
+from ads.serializers.comment import CommentSerializer, CommentListSerializer, CommentCreateSerializer
 
 
 class CommentViewSet(ModelViewSet):

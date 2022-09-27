@@ -1,5 +1,5 @@
 from rest_framework import permissions
-from backend.users.models import User
+from users.models import User
 
 
 class UserPermissions(permissions.BasePermission):

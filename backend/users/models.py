@@ -10,21 +10,21 @@ class UserRoles(Enum):
     """Классификатор ролей пользователя"""
     ADMIN = "admin"
     USER = "user"
-    ROLES = [(ADMIN, "Администратор"), (USER, "Пользователь")]
+    ROLES = ((ADMIN, "Администратор"), (USER, "Пользователь"))
 
 
 class User(AbstractBaseUser):
     """Модель пользователя"""
-    # ADMIN = "admin"
-    # USER = "user"
-    # ROLES = [(ADMIN, "Администратор"), (USER, "Пользователь")]
+    ADMIN = "admin"
+    USER = "user"
+    ROLES = ((ADMIN, "Администратор"), (USER, "Пользователь"))
 
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     phone = models.CharField(max_length=20, null=True)
     email = models.EmailField(unique=True, max_length=50)
-    role = models.CharField(max_length=5, null=True, choices=UserRoles.ROLES, default=UserRoles.USER)
-    # role = models.CharField(max_length=5, null=True, choices=ROLES, default="user")
+    # role = models.CharField(max_length=5, null=True, choices=UserRoles.ROLES, default=UserRoles.USER)
+    role = models.CharField(max_length=5, null=True, choices=ROLES, default=USER)
     image = models.ImageField(upload_to="user_images/", null=True)
     password = models.CharField(max_length=100)
     is_active = models.BooleanField(null=True, default=True)

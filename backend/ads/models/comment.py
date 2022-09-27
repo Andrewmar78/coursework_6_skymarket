@@ -1,6 +1,5 @@
 from django.db import models
-
-from .ad import Ad
+from ads.models.ad import Ad
 from users.models import User
 
 

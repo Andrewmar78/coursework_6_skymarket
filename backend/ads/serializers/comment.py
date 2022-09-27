@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from backend.ads.models.comment import Comment
-from backend.users.models import User
+from ads.models.comment import Comment
+from users.models import User
 
 
 class CommentSerializer(serializers.ModelSerializer):
