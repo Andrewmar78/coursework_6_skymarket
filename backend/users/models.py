@@ -2,8 +2,7 @@ from enum import Enum
 
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
-
-from .managers import UserManager
+from users.managers import UserManager
 
 
 class UserRoles(Enum):
